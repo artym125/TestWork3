@@ -8,6 +8,25 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController {
+    
+    
+    let objectsOne = [
+        AccountInfo(accountImage: #imageLiteral(resourceName: "AccountPhoto"), fullName: "Lin See", emailAdress: "lin.see@gmail.com")
+    ]
+    let objectsTwo = [
+        SettingsTwo(imageSettings: #imageLiteral(resourceName: "Frame 33563-2"), settingTitle: "Recommendations", status: "Auto"),
+        SettingsTwo(imageSettings: #imageLiteral(resourceName: "Frame 33563-3"), settingTitle: "Achievements", status: ""),
+        SettingsTwo(imageSettings: #imageLiteral(resourceName: "Frame 33563-4"), settingTitle: "Sleep timer", status: ""),
+        SettingsTwo(imageSettings: #imageLiteral(resourceName: "Frame 33563-5"), settingTitle: "Appearance", status: "")
+    ]
+    let objectThree = [
+        Settings(imageSettings: #imageLiteral(resourceName: "Frame 33563-6"), settingTitle: "Share"),
+        Settings(imageSettings: #imageLiteral(resourceName: "Frame 33563-7"), settingTitle: "Rate us"),
+        Settings(imageSettings: #imageLiteral(resourceName: "Frame 33563-8"), settingTitle: "Privacy Policy")
+    ]
+    let objectFour = [
+        Settings(imageSettings: #imageLiteral(resourceName: "Fram1png"), settingTitle: "Report a bug")
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +37,7 @@ class SettingsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.title = "Settings"
        
-        self.tableView.backgroundColor = #colorLiteral(red: 0.2417705357, green: 0.2417705357, blue: 0.2417705357, alpha: 1)
+        self.tableView.backgroundColor = #colorLiteral(red: 0.1882352941, green: 0.1882352941, blue: 0.1921568627, alpha: 1)
         
         //self.navigationItem.rightBarButtonItem = self.editButtonItem
         
@@ -35,13 +54,13 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if section == 0 {
-            return 1
+            return objectsOne.count
         } else if section == 1 {
-            return 4
+            return objectsTwo.count
         } else if section == 2 {
-            return 3
+            return objectThree.count
         } else if section == 3 {
-            return 1
+            return objectFour.count
         } else if section == 4 {
             return 1
         }
@@ -54,16 +73,26 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
         let cell = tableView.dequeueReusableCell(withIdentifier: "accountCell", for: indexPath) as! SettingsTableViewCell
+            let object = objectsOne[indexPath.row]
+            cell.setOne(object: object)
             return cell
             
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCellOne", for: indexPath) as! SettingsTableViewCell
+            let object = objectsTwo[indexPath.row]
+            cell.setTwo(object: object)
                 return cell
             
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCellTwo", for: indexPath) as! SettingsTableViewCell
-            return cell } else if indexPath.section == 3 {
+            let object = objectThree[indexPath.row]
+            cell.setThree(object: object)
+            return cell
+            
+        } else if indexPath.section == 3 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCellThree", for: indexPath) as! SettingsTableViewCell
+            let object = objectFour[indexPath.row]
+            cell.setFour(object: object)
                 return cell
             } else if indexPath.section == 4 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "settingsButtonOne", for: indexPath) as! SettingsTableViewCell
